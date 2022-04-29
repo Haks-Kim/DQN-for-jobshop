@@ -1,2 +1,2 @@
-# DGN-for-jobshop
+# DQN-for-jobshop
 practice for DQN implementation
