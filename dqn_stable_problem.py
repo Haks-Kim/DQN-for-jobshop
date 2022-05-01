@@ -143,6 +143,7 @@ if __name__ == "__main__":
             agent.remember(state, action, reward, next_state, done)
             state = next_state
 
+            print("action {}".format(action))
             if done:
                 if time >= number_job * number_machine-1:
                     successnumber += 1
@@ -154,7 +155,7 @@ if __name__ == "__main__":
         if len(agent.memory) > batch_size:
             agent.replay(batch_size)
 
-
+        
         problem.PlotResult()
         if e % 2 == 0:
             print("loop : {}/{},  score: {} success: {} / 10, e: {:.2}"
