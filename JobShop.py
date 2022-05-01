@@ -63,7 +63,7 @@ class JobShop:
         # input action and return state score and done
         # action: choose a job ot process
         # state
-
+        
         done = False
         if action == None:
             self.MeasurementAction(self.schedule_line)
@@ -80,8 +80,7 @@ class JobShop:
                     job_position_list[job_id] = -1
             if job_position_list[action] == -1:
                 done = True
-                canchoose = [[i, job_position_list[i]] for i in range(
-                                    self.number_job) if job_position[i] != -1]
+                canchoose = [[i, job_position_list[i]] for i in range(self.number_job) if job_position_list[i] != -1]
                 action = canchoose[0]
             else:
                 action = [action, job_position_list[action]]
@@ -189,7 +188,7 @@ class JobShop:
 
     def PlotResult(self, num=0):
         # plot function for the gant map
-
+        
         colorbox = ['yellow', 'whitesmoke', 'lightyellow',
                     'khaki', 'silver', 'pink', 'lightgreen', 'orange', 'grey', 'r', 'brown']
 
@@ -320,4 +319,4 @@ if __name__ == "__main__":
                                      [0, 1], [1, 1], [2, 1], [3, 1], [4, 1], ]))
     problem.GetFeature(0, 0)
 
-
+    

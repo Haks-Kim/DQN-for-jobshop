@@ -5,8 +5,8 @@ import keras
 import numpy as np
 from keras.layers import Dense, Input
 from keras.models import Model, Sequential
-from keras.optimizers import Adam 
-from keras.utils import plot_model
+from tensorflow.keras.optimizers import Adam 
+from tensorflow.keras.utils import plot_model
 
 import JobShop
 
@@ -28,7 +28,7 @@ class DQNAgent:
         self.epsilon_min = 0.01
         self.epsilon_decay = 0.995
         self.learning_rate = 0.0005
-        self.model = self._build_subprblem_model()
+        self.model = self._build_subproblem_model()
 
     def _build_subproblem_model(self):
         # to build the whole model for jobshop
@@ -144,15 +144,15 @@ if __name__ == "__main__":
             agent.replay(batch_size)
 
         
-        # problem.PlotResult()
-        if e % 10 == 0:
+        problem.PlotResult()
+        if e % 2 == 0:
             print("loop : {}/{}, makespan: {} success: {} / 10, e: {:.2}"
                     .format(e,EPISODES,score,successnumber,agent.epsilon))
             print(action_list,len(action_list))
             f = open("log/logs", "a")
             f.close()
             successnumber = 0
-
+            #problem.PlotResult()
             agent.save("./save/jobshop-dqn.h5")
 
 
