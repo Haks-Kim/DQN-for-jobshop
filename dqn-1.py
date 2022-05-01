@@ -35,7 +35,7 @@ MIN_EPSILON = 0.001
 
 # Stats settings
 AGGREGATE_STATS_EVERY = 50
-SHOW_PREVIEW = False
+SHOW_PREVIEW = True #False
 
 
 class Blob:
@@ -334,7 +334,7 @@ for episode in tqdm(range(1,EPISODES+1),ascii=True, unit="episode"):
 
         episode_reward += reward
 
-        if SHOW_PREVIEW and not episode % AGGREGATE_STATS_EVERY:
+        if SHOW_PREVIEW and not episode % 1:#AGGREGATE_STATS_EVERY:
             env.render()
 
         agent.update_replay_memory((current_state, action, reward, new_state, done))
