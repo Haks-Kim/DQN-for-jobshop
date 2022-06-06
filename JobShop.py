@@ -65,7 +65,7 @@ class JobShop:
         # state
         
         done = False
-        if action == None:
+        if action == None:                                                          # How can action be None!?
             self.MeasurementAction(self.schedule_line)
             possible_pob_position = self.Get_Possible_Job_Position()
             state = np.array(self.Get_Features(possible_pob_position))
@@ -78,6 +78,7 @@ class JobShop:
                     job_position_list[job_id] = job_position + 1
                 else:
                     job_position_list[job_id] = -1
+                    
             if job_position_list[action] == -1:
                 done = True
                 canchoose = [[i, job_position_list[i]] for i in range(self.number_job) if job_position_list[i] != -1]

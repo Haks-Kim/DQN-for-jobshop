@@ -136,14 +136,14 @@ if __name__ == "__main__":
         # the sub loop for each step of the problem 
         for time in range(number_job*number_machine):
 
-            action = agent.act(state)
+            action = agent.act(state)                               # action -> job
             next_state, score, done = problem.Step(action)
-            reward = oldscore - score + 15 if not done else -1000
+            reward = oldscore - score + 15 if not done else -1000   # need to be changed
             oldscore = score
             agent.remember(state, action, reward, next_state, done)
             state = next_state
 
-            print("action {}".format(action))
+            
             if done:
                 if time >= number_job * number_machine-1:
                     successnumber += 1
@@ -155,12 +155,22 @@ if __name__ == "__main__":
         if len(agent.memory) > batch_size:
             agent.replay(batch_size)
 
-        
+        #print("action {}".format(action))
+        # print("state {}".format(state))
+   
         problem.PlotResult()
         if e % 2 == 0:
-            print("loop : {}/{},  score: {} success: {} / 10, e: {:.2}"
+            print("\nloop : {}/{},  score: {} success: {} / 10, e: {:.2}"
                   .format(e, EPISODES, score, successnumber, agent.epsilon))
+            
+            problem.Print_info()
+            '''
             print(action_list, len(action_list))
+            print("state {}".format(state))
+            print("problem.schedule_line {}".format(problem.schedule_line)) 
+            print("problem.schedule_plan {}".format(problem.X_schedule_plan) )
+            '''
+
             f = open('log/logs', 'a')
             f.close()
             successnumber = 0
